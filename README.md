@@ -60,20 +60,18 @@ var t = d3.timer(function(elapsed) {
 
 指定 *callback* 并重新启动定时器，也可以指定 *delay* 和 *time* 选项。等价于停止之前的定时器并重新定义一个新的定时器，尽管此定时器保留了原始调用的优先级。
 
-Restart a timer with the specified *callback* and optional *delay* and *time*. This is equivalent to stopping this timer and creating a new timer with the specified arguments, although this timer retains the original invocation priority.
-
 <a name="timer_stop" href="#timer_stop">#</a> <i>timer</i>.<b>stop</b>() [<>](https://github.com/d3/d3-timer/blob/master/src/timer.js#L43 "Source")
 
-Stops this timer, preventing subsequent callbacks. This method has no effect if the timer has already stopped.
+停止定时器并阻止后续的回调执行。如果定时器已经停止的话则这个方法没有任何影响。
 
 <a name="timerFlush" href="#timerFlush">#</a> d3.<b>timerFlush</b>() [<>](https://github.com/d3/d3-timer/blob/master/src/timer.js#L58 "Source")
 
-Immediately invoke any eligible timer callbacks. Note that zero-delay timers are normally first executed after one frame (~17ms). This can cause a brief flicker because the browser renders the page twice: once at the end of the first event loop, then again immediately on the first timer callback. By flushing the timer queue at the end of the first event loop, you can run any zero-delay timers immediately and avoid the flicker.
+立刻调用符合条件的定时器回调。要注意的是定时器会在下一帧执行，因此会有不大于 17ms 的延迟。这可能会导致页面闪烁，因为浏览器被渲染两次: 一次是在第一次事件循环结束时，另一次是在定时器回调第一次执行时。可以通过在第一个事件循环结束时刷新定时器队列，你可以启用一个零延迟的定时器以避免闪烁。---（不太理解，后面为原英文文档）--- Immediately invoke any eligible timer callbacks. Note that zero-delay timers are normally first executed after one frame (~17ms). This can cause a brief flicker because the browser renders the page twice: once at the end of the first event loop, then again immediately on the first timer callback. By flushing the timer queue at the end of the first event loop, you can run any zero-delay timers immediately and avoid the flicker.
 
 <a name="timeout" href="#timeout">#</a> d3.<b>timeout</b>(<i>callback</i>[, <i>delay</i>[, <i>time</i>]]) [<>](https://github.com/d3/d3-timer/blob/master/src/timeout.js "Source")
 
-Like [timer](#timer), except the timer automatically [stops](#timer_stop) on its first callback. A suitable replacement for [setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout) that is guaranteed to not run in the background. The *callback* is passed the elapsed time.
+与 [timer](#timer) 类似，但是在执行完第一次回调之后会自动 [stops](#timer_stop)。可以作为 [setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout) 的替换，因为这个方法不会在页面处于非活动状态时运行(内部使用requestAnimationFrame实现)。*callback* 参数为 *elapsed* (定义定时器到回调执行之间的时间)。
 
 <a name="interval" href="#interval">#</a> d3.<b>interval</b>(<i>callback</i>[, <i>delay</i>[, <i>time</i>]]) [<>](https://github.com/d3/d3-timer/blob/master/src/interval.js "Source")
 
-Like [timer](#timer), except the *callback* is invoked only every *delay* milliseconds; if *delay* is not specified, this is equivalent to [timer](#timer). A suitable replacement for [setInterval](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) that is guaranteed to not run in the background. The *callback* is passed the elapsed time.
+与 [timer](#timer) 类似，但是 *delay* 在此处的含义为每执行完一次 *callback* 后下一次 *callback* 会在 *delay* 后执行，如果没有指定 *delay* 则功能与 [timer](#timer) 一样。这个方法可以用来替换 [setInterval](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) 因为基于 *requestAnimationFrame* 实现，不会在后台执行。*callback* 的参数为从定义定时器开始到当前回调执行所经历的时间间隔大小。
