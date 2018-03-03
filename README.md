@@ -4,7 +4,7 @@
 
 ## Installing
 
-If you use NPM, `npm install d3-timer`. Otherwise, download the [latest release](https://github.com/d3/d3-timer/releases/latest). You can also load directly from [d3js.org](https://d3js.org), either as a [standalone library](https://d3js.org/d3-timer.v1.min.js) or as part of [D3 4.0](https://github.com/d3/d3). AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3` global is exported:
+NPM 安装: `npm install d3-timer`. 此外还可以下载 [latest release](https://github.com/d3/d3-timer/releases/latest)。也可以直接从 [d3js.org](https://d3js.org) 加载 [standalone library(单独的标准库)](https://d3js.org/d3-timer.v1.min.js) 或作为 [D3 4.0](https://github.com/d3/d3) 的一部分加载。支持 AMD, CommonJS 以及基础的标签引入形式，如果使用标签引入会暴露一个 `d3` 全局变量:
 
 ```html
 <script src="https://d3js.org/d3-timer.v1.min.js"></script>
@@ -66,7 +66,7 @@ var t = d3.timer(function(elapsed) {
 
 <a name="timerFlush" href="#timerFlush">#</a> d3.<b>timerFlush</b>() [<>](https://github.com/d3/d3-timer/blob/master/src/timer.js#L58 "Source")
 
-立刻调用符合条件的定时器回调。要注意的是定时器会在下一帧执行，因此会有不大于 17ms 的延迟。这可能会导致页面闪烁，因为浏览器被渲染两次: 一次是在第一次事件循环结束时，另一次是在定时器回调第一次执行时。可以通过在第一个事件循环结束时刷新定时器队列，你可以启用一个零延迟的定时器以避免闪烁。---（不太理解，后面为原英文文档）--- Immediately invoke any eligible timer callbacks. Note that zero-delay timers are normally first executed after one frame (~17ms). This can cause a brief flicker because the browser renders the page twice: once at the end of the first event loop, then again immediately on the first timer callback. By flushing the timer queue at the end of the first event loop, you can run any zero-delay timers immediately and avoid the flicker.
+立刻调用符合条件的定时器回调。要注意的是定时器会在下一帧执行，因此会有不大于 17ms 的延迟。这可能会导致页面闪烁，因为浏览器被渲染两次: 一次是在第一次事件循环结束时，另一次是在定时器回调第一次执行时。可以通过在第一个事件循环结束时刷新定时器队列，你可以启用一个零延迟的定时器以避免闪烁。---（**不太理解，后面为原英文文档**）--- Immediately invoke any eligible timer callbacks. Note that zero-delay timers are normally first executed after one frame (~17ms). This can cause a brief flicker because the browser renders the page twice: once at the end of the first event loop, then again immediately on the first timer callback. By flushing the timer queue at the end of the first event loop, you can run any zero-delay timers immediately and avoid the flicker.
 
 <a name="timeout" href="#timeout">#</a> d3.<b>timeout</b>(<i>callback</i>[, <i>delay</i>[, <i>time</i>]]) [<>](https://github.com/d3/d3-timer/blob/master/src/timeout.js "Source")
 
