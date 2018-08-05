@@ -66,7 +66,7 @@ var t = d3.timer(function(elapsed) {
 
 <a name="timerFlush" href="#timerFlush">#</a> d3.<b>timerFlush</b>() [<>](https://github.com/d3/d3-timer/blob/master/src/timer.js#L58 "Source")
 
-立刻调用符合条件的定时器回调。要注意的是定时器会在下一帧执行，因此会有不大于 17ms 的延迟。这可能会导致页面闪烁，因为浏览器被渲染两次: 一次是在第一次事件循环结束时，另一次是在定时器回调第一次执行时。可以通过在第一个事件循环结束时刷新定时器队列，你可以启用一个零延迟的定时器以避免闪烁。---（**不太理解，后面为原英文文档**）--- Immediately invoke any eligible timer callbacks. Note that zero-delay timers are normally first executed after one frame (~17ms). This can cause a brief flicker because the browser renders the page twice: once at the end of the first event loop, then again immediately on the first timer callback. By flushing the timer queue at the end of the first event loop, you can run any zero-delay timers immediately and avoid the flicker.
+立刻调用符合条件的定时器回调。要注意的是定时器会在下一帧执行，因此会有不大于 17ms 的延迟。这可能会导致页面闪烁，因为浏览器被渲染两次: 一次是在第一次事件循环结束时，另一次是在定时器回调第一次执行时。可以通过在第一个事件循环结束时刷新定时器队列，你可以启用一个零延迟的定时器以避免闪烁。
 
 <a name="timeout" href="#timeout">#</a> d3.<b>timeout</b>(<i>callback</i>[, <i>delay</i>[, <i>time</i>]]) [<>](https://github.com/d3/d3-timer/blob/master/src/timeout.js "Source")
 
